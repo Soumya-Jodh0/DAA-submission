@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class LRS 
+{
+    public static String computeLRS(String S) 
+    {
+        int n = S.length();
+        int[][] dp = new int[n + 1][n + 1];
+        for (int i = 1; i <= n; i++) 
+        {
+            for (int j = 1; j <= n; j++) 
+            {
+                if (S.charAt(i - 1) == S.charAt(j - 1) && i != j) 
+                {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } 
+                else 
+                {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int i = n, j = n;
+        while (i > 0 && j > 0) 
+        {
+            if (S.charAt(i - 1) == S.charAt(j - 1) && i != j && dp[i][j] == dp[i - 1][j - 1] + 1) {
+                sb.append(S.charAt(i - 1));
+                i--; j--;
+            } 
+            else if (dp[i - 1][j] >= dp[i][j - 1]) 
+            {
+                i--;
+            } 
+            else 
+            {
+                j--;
+            }
+        }
+        return sb.reverse().toString();
+    }
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+
+
+        String S = "SOUMYAZAZANEWHGF";
+        String lrs = computeLRS(S);
+        System.out.println("Length of LRS: " + lrs.length());
+        System.out.println("LRS: " + lrs);
+        sc.close();
+    }
+}
