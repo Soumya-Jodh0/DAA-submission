@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class lcs
+public class LCS
 {
     public static String computeLCS(String X, String Y) 
     {
@@ -50,7 +50,8 @@ public class lcs
 
         StringBuilder sb = new StringBuilder();
         int i = m, j = n;
-        while (i > 0 && j > 0) {
+        while (i > 0 && j > 0) 
+        {
             if (dir[i][j] == 'D') 
             {
                 sb.append(X.charAt(i - 1));
@@ -68,7 +69,8 @@ public class lcs
         return sb.reverse().toString();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         Scanner sc = new Scanner(System.in);
 
         String X = "AGCCCTAAGGCTACCTAGCTT";
@@ -79,4 +81,5 @@ public class lcs
         System.out.println();
         sc.close();
     }
+
 }
